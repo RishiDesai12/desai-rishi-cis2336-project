@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtConnect - Submit Artwork</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>ArtConnect</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="submit.html">Submit Artwork</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="references.html">References</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Submit Your Artwork</h2>
+        <p>Use the form below to submit your artwork information to the ArtConnect directory.</p>
+        
+        <form id="artwork-submission-form" action="#" method="POST">
+            
+            <div class="form-group">
+                <label for="artist-name">Artist Name:</label>
+                <input type="text" id="artist-name" name="artist-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="artist-email">Email Address:</label>
+                <input type="email" id="artist-email" name="artist-email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="artwork-title">Artwork Title:</label>
+                <input type="text" id="artwork-title" name="artwork-title" required>
+            </div>
+
+            <!-- Updated Category Section with Radio Buttons -->
+            <div class="form-group">
+                <p><strong>Category:</strong></p>
+                <input type="radio" id="cat-painting" name="category" value="Painting" required> 
+                <label for="cat-painting">Painting</label><br>
+                
+                <input type="radio" id="cat-sculpture" name="category" value="Sculpture"> 
+                <label for="cat-sculpture">Sculpture</label><br>
+                
+                <input type="radio" id="cat-digital" name="category" value="Digital Art"> 
+                <label for="cat-digital">Digital Art</label><br>
+
+                <input type="radio" id="cat-photography" name="category" value="Photography"> 
+                <label for="cat-photography">Photography</label><br>
+
+                <input type="radio" id="cat-other" name="category" value="Other"> 
+                <label for="cat-other">Other</label>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price ($):</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" placeholder="Leave blank if Not for Sale">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+
+            <button type="submit">Submit Artwork</button>
+            
+        </form>
+    </main>
+
+    <footer>
+        <section id="developer-contact">
+            <h3>Developer Contact</h3>
+            <p>Developer: Rishi Desai</p>
+            <p>Email: <a href="mailto:rdesai5@cougarnet.uh.edu">rdesai5@cougarnet.uh.edu</a></p>
+        </section>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
