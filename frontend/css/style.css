@@ -180,3 +180,24 @@ footer a {
 footer a:hover {
     color: #ffffff;
 }
+@media screen and (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 15px 0;
+    }
+
+    #gallery-container, #events-container {
+        flex-direction: column;
+    }
+
+    .artwork-card, .event-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    iframe {
+        max-width: 100%;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+}
