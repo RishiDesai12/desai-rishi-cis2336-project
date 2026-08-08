@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r   <img src=\"https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white\" alt=\"Node.js Badge\" />\r   <img src=\"https://img.shields.io/badge/Express.js-404D59?style=for-the-badge\" alt=\"Express.js Badge\" />\r </div>",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
