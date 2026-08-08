@@ -1,4 +1,3 @@
-// Wait for the DOM to fully load before running any scripts
 document.addEventListener("DOMContentLoaded", () => {
     const faqQuestions = document.querySelectorAll('.faq-question');
 
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-
 
     const form = document.getElementById('artwork-submission-form');
     
@@ -51,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!categorySelected) {
                 errorMessage += "Please select a Category.<br>";
             }
+
             if (errorMessage !== "") {
                 const errorDiv = document.createElement('div');
                 errorDiv.id = 'form-error-message';
@@ -63,8 +62,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 form.insertBefore(errorDiv, form.firstChild);
             } else {
-                alert("Thank you, " + artistName + "! Your artwork submission was successful.");
-                form.reset();
+                // --- NEW FETCH CODE STARTS HERE ---
+                const formData = {
+                    name: artistName,
+                    email: email
+                };
+
+                fetch('http://localhost:3000/api/students/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+  
+                    alert(data.message); 
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("There was an error connecting to the server.");
+                });
+
             }
         });
     }
@@ -75,24 +96,20 @@ document.addEventListener("DOMContentLoaded", () => {
         img.style.cursor = "zoom-in";
 
         img.addEventListener('click', () => {
-            // Check if it is already enlarged
             if (img.style.transform === "scale(1.5)") {
-                // Shrink back to normal
                 img.style.transform = "scale(1)";
                 img.style.position = "static";
                 img.style.zIndex = "1";
                 img.style.boxShadow = "none";
                 img.style.cursor = "zoom-in";
             } else {
-                // Enlarge image dynamically
                 img.style.transform = "scale(1.5)";
                 img.style.transition = "transform 0.3s ease";
                 img.style.position = "relative";
-                img.style.zIndex = "100"; // Brings it to the very front
+                img.style.zIndex = "100"; 
                 img.style.boxShadow = "0px 10px 30px rgba(0,0,0,0.5)";
                 img.style.cursor = "zoom-out";
             }
         });
     });
-
 });
