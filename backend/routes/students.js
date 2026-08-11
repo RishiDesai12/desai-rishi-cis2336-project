@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, title, category, price } = req.body;
 
     if (!name || !email) {
         return res.status(400).json({ error: 'Name and email are required.' });
@@ -16,6 +16,9 @@ router.post('/', (req, res) => {
         id: studentsArray.length + 1,
         name: name,
         email: email,
+        title: title,
+        category: category,
+        price: price,
         dateSubmitted: new Date()
     };
 
