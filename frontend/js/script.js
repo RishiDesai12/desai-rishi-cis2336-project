@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 form.insertBefore(errorDiv, form.firstChild);
             } else {
-                // --- NEW FETCH CODE STARTS HERE ---
                 const formData = {
                     name: artistName,
                     email: email
@@ -77,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .then(response => response.json())
                 .then(data => {
-  
                     alert(data.message); 
                     form.reset();
                 })
@@ -85,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error('Error:', error);
                     alert("There was an error connecting to the server.");
                 });
-
             }
         });
     }
@@ -112,4 +109,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    const galleryContainer = document.getElementById('gallery-container');
+    
+    if (galleryContainer) {
+        fetch('http://localhost:3000/api/students/')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(submission => {
+                    const newCard = document.createElement('div');
+                    newCard.className = 'artwork-card';
+                    
+                    newCard.innerHTML = `
+                        <img src="https://via.placeholder.com/300x200/333333/ffffff?text=New+Artwork" alt="New Artwork">
+                        <h3>Artist: ${submission.name}</h3>
+                        <p>Contact: ${submission.email}</p>
+                        <p>Category: Dynamic Entry</p>
+                        <p>Price: <span class="not-for-sale">Not for Sale</span></p>
+                    `;
+                    
+                    galleryContainer.insertBefore(newCard, galleryContainer.firstChild);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching gallery data:', error);
+            });
+    }
 });
