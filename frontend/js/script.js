@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = document.getElementById('artist-email').value.trim();
             const title = document.getElementById('artwork-title').value.trim();
             const categorySelected = document.querySelector('input[name="category"]:checked');
+            
+            // Attempt to grab the price if the input exists on the form
+            const priceInput = document.getElementById('artwork-price');
+            const priceValue = priceInput ? priceInput.value.trim() : "";
 
             let errorMessage = "";
 
@@ -64,7 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 const formData = {
                     name: artistName,
-                    email: email
+                    email: email,
+                    title: title,
+                    category: categorySelected.value,
+                    price: priceValue 
                 };
 
                 fetch('http://localhost:3000/api/students/', {
@@ -120,12 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     const newCard = document.createElement('div');
                     newCard.className = 'artwork-card';
                     
+                    let displayPrice = submission.price ? `$${submission.price}` : `<span class="not-for-sale">Not for Sale</span>`;
+                    
                     newCard.innerHTML = `
-                        <img src="https://via.placeholder.com/300x200/333333/ffffff?text=New+Artwork" alt="New Artwork">
-                        <h3>Artist: ${submission.name}</h3>
+                        <img src="https://via.placeholder.com/300x200/333333/ffffff?text=New+Artwork" alt="${submission.title || 'Artwork'}">
+                        <h3>${submission.title || 'Untitled'}</h3>
+                        <p>Artist: ${submission.name}</p>
                         <p>Contact: ${submission.email}</p>
-                        <p>Category: Dynamic Entry</p>
-                        <p>Price: <span class="not-for-sale">Not for Sale</span></p>
+                        <p>Category: ${submission.category || 'Uncategorized'}</p>
+                        <p>Price: ${displayPrice}</p>
                     `;
                     
                     galleryContainer.insertBefore(newCard, galleryContainer.firstChild);
