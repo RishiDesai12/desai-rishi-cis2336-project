@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = document.getElementById('artwork-title').value.trim();
             const categorySelected = document.querySelector('input[name="category"]:checked');
             
-            // Attempt to grab the price if the input exists on the form
-            const priceInput = document.getElementById('artwork-price');
+            // FIXED: Changed 'artwork-price' to 'price' to match your HTML
+            const priceInput = document.getElementById('price');
             const priceValue = priceInput ? priceInput.value.trim() : "";
 
             let errorMessage = "";
